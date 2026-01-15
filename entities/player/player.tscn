@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://f3fucegwssn3"]
+
+[ext_resource type="Script" uid="uid://cprawxa8ljv1q" path="res://entities/player/player.gd" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://tbd0rca83gjo" path="res://utils/state/state_machine/state_machine.tscn" id="2_abrql"]
+[ext_resource type="PackedScene" uid="uid://bufliqxdbb3fn" path="res://entities/player/states/fall/fall.tscn" id="3_8fjmc"]
+[ext_resource type="PackedScene" uid="uid://dlufrnlnamevg" path="res://entities/player/states/idle/idle.tscn" id="4_qiwj3"]
+[ext_resource type="PackedScene" uid="uid://nfe5ubjig3js" path="res://entities/player/states/jump/jump.tscn" id="5_26q78"]
+[ext_resource type="PackedScene" uid="uid://b2h7j5ucsmb0y" path="res://entities/player/states/run/run.tscn" id="6_bectd"]
+[ext_resource type="Script" uid="uid://ceyqkqobf4q2p" path="res://entities/player/utils/coyote_timer.gd" id="7_qiwj3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_symyc"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_symyc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_symyc")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("parent", "initial_state") instance=ExtResource("2_abrql")]
+parent = NodePath("..")
+initial_state = NodePath("Fall")
+
+[node name="Fall" parent="StateMachine" node_paths=PackedStringArray("coyote_timer") instance=ExtResource("3_8fjmc")]
+coyote_timer = NodePath("../../CoyoteTimer")
+
+[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("coyote_timer") instance=ExtResource("4_qiwj3")]
+coyote_timer = NodePath("../../CoyoteTimer")
+
+[node name="Jump" parent="StateMachine" instance=ExtResource("5_26q78")]
+
+[node name="Run" parent="StateMachine" node_paths=PackedStringArray("coyote_timer") instance=ExtResource("6_bectd")]
+coyote_timer = NodePath("../../CoyoteTimer")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.1
+script = ExtResource("7_qiwj3")
