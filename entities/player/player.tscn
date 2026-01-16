@@ -1,17 +1,33 @@
-[gd_scene load_steps=9 format=3 uid="uid://f3fucegwssn3"]
+[gd_scene load_steps=15 format=3 uid="uid://f3fucegwssn3"]
 
 [ext_resource type="Script" uid="uid://cprawxa8ljv1q" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://tbd0rca83gjo" path="res://utils/state/state_machine/state_machine.tscn" id="2_abrql"]
+[ext_resource type="Texture2D" uid="uid://c31ffr2vmaysf" path="res://icon.svg" id="2_wvtmh"]
+[ext_resource type="Script" uid="uid://drwuqi1adk6vf" path="res://utils/inventory/items/item_data.gd" id="3_7thud"]
 [ext_resource type="PackedScene" uid="uid://bufliqxdbb3fn" path="res://entities/player/states/fall/fall.tscn" id="3_8fjmc"]
 [ext_resource type="PackedScene" uid="uid://dlufrnlnamevg" path="res://entities/player/states/idle/idle.tscn" id="4_qiwj3"]
 [ext_resource type="PackedScene" uid="uid://nfe5ubjig3js" path="res://entities/player/states/jump/jump.tscn" id="5_26q78"]
 [ext_resource type="PackedScene" uid="uid://b2h7j5ucsmb0y" path="res://entities/player/states/run/run.tscn" id="6_bectd"]
 [ext_resource type="Script" uid="uid://ceyqkqobf4q2p" path="res://entities/player/utils/coyote_timer.gd" id="7_qiwj3"]
+[ext_resource type="Script" uid="uid://ba5r1efuod7jv" path="res://utils/inventory/core/inventory_component.gd" id="8_26q78"]
+[ext_resource type="Script" uid="uid://coadkyrrcv1uu" path="res://utils/inventory/core/inventory_data.gd" id="11_7thud"]
+
+[sub_resource type="Resource" id="Resource_a1qjk"]
+script = ExtResource("3_7thud")
+id = "\"wood\""
+display_name = "\"Wood\""
+icon = ExtResource("2_wvtmh")
+metadata/_custom_type_script = "uid://drwuqi1adk6vf"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_symyc"]
 
+[sub_resource type="Resource" id="Resource_7thud"]
+script = ExtResource("11_7thud")
+metadata/_custom_type_script = "uid://coadkyrrcv1uu"
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_symyc")
+test_item = SubResource("Resource_a1qjk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(6, 6)
@@ -35,3 +51,7 @@ coyote_timer = NodePath("../../CoyoteTimer")
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
 script = ExtResource("7_qiwj3")
+
+[node name="InventoryComponent" type="Node" parent="."]
+script = ExtResource("8_26q78")
+inventory = SubResource("Resource_7thud")
