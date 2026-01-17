@@ -10,8 +10,6 @@ func _init() -> void:
 	for i in range(size):
 		slots[i] = InventorySlot.new()
 		
-	print(slots)
-		
 func add_item(item : ItemData, amount : int = -1) -> int:
 	var remaining = amount
 	
@@ -36,5 +34,17 @@ func add_item(item : ItemData, amount : int = -1) -> int:
 			
 	return remaining
 
-func remove_item(item : ItemData, amount : int = -1):
-	pass
+func remove_item(item : ItemData, amount : int = -1) -> void:
+	var remaining = amount
+	
+	for slot in slots:
+		if remaining <= 0:
+			break
+			
+		# Check if item exists
+		if slot.item == item:
+			var take = min(slot.amount, remaining)
+			slot.amount -= take
+			remaining -= take
+			if slot.amount <= 0:
+				slot.clear()

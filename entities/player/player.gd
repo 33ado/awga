@@ -12,9 +12,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var test_item: ItemData
 
 func _ready():
-	pass
-	inventory.add_item(test_item, 40)
+	inventory.add_item(test_item, 300)
 	inventory.add_item(test_item, 30)
+	inventory.remove_item(test_item, 70)
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()

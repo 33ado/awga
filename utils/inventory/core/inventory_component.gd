@@ -9,3 +9,6 @@ func _ready() -> void:
 
 func add_item(item : ItemData, amount : int = -1):
 	inventory.add_item(item, amount)
+
+func remove_item(item : ItemData, amount : int = -1):
+	inventory.remove_item(item, amount)
