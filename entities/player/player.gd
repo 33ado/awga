@@ -15,7 +15,7 @@ func _ready():
 	inventory.add_item(test_item, 300)
 	inventory.add_item(test_item, 30)
 	inventory.remove_item(test_item, 70)
-	inventory.move_slot(1, 10)
+	inventory.split_stack(1, 10, 30)
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()

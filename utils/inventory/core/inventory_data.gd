@@ -71,3 +71,27 @@ func move_slot(from_index : int, to_index : int):
 		to_slot.amount = from_slot.amount
 		from_slot.item = temp_item
 		from_slot.amount = temp_amount
+		
+func split_stack(from_index : int, to_index : int, amount : int) -> void:
+	if from_index == to_index:
+		return
+	
+	var from_slot = slots[from_index]
+	var to_slot = slots[to_index]
+	
+	# Only letting split to empty slots
+	if from_slot.is_empty() or not to_slot.is_empty():
+		return
+	
+	var moved = min(amount, from_slot.amount)
+	to_slot.item = from_slot.item
+	to_slot.amount = moved
+	from_slot.amount -= moved
+	if from_slot.amount <= 0:
+		from_slot.clear()
+	
+func get_slot(index : int) -> InventorySlot:
+	if index >= size:
+		return null
+	
+	return slots[index]

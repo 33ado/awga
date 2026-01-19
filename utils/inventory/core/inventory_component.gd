@@ -15,3 +15,9 @@ func remove_item(item : ItemData, amount : int = -1):
 
 func move_slot(from_index : int, to_index : int):
 	inventory.move_slot(from_index, to_index)
+
+func split_stack(from_index : int, to_index : int, amount : int):
+	inventory.split_stack(from_index, to_index, amount)
+	
+func get_slot(index : int) -> InventorySlot:
+	return inventory.get_slot(index)
