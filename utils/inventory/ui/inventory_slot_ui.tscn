@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0pgo1xmtrr2n"]
+
+[ext_resource type="Script" uid="uid://blcdft023ejh4" path="res://utils/inventory/ui/inventory_slot_ui.gd" id="1_hh8jm"]
+
+[node name="InventorySlotUI" type="Panel"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_hh8jm")
+
+[node name="AmountLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 20.0
+stretch_mode = 5
