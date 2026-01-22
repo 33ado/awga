@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://x8dbedxtiklu"]
+[gd_scene load_steps=7 format=3 uid="uid://x8dbedxtiklu"]
 
 [ext_resource type="PackedScene" uid="uid://f3fucegwssn3" path="res://entities/player/player.tscn" id="1_syuel"]
+[ext_resource type="PackedScene" uid="uid://cn6gsfm222meu" path="res://utils/inventory/ui/inventory_ui.tscn" id="2_8a8pi"]
+[ext_resource type="Script" uid="uid://ba5r1efuod7jv" path="res://utils/inventory/core/inventory_component.gd" id="2_hrq6i"]
+[ext_resource type="Script" uid="uid://coadkyrrcv1uu" path="res://utils/inventory/core/inventory_data.gd" id="3_tbfq4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8a8pi"]
 size = Vector2(807, 290)
+
+[sub_resource type="Resource" id="Resource_s3n3v"]
+script = ExtResource("3_tbfq4")
+metadata/_custom_type_script = "uid://coadkyrrcv1uu"
 
 [node name="Test" type="Node2D"]
 
@@ -14,5 +21,17 @@ position = Vector2(204, -14)
 position = Vector2(69.5, 526)
 shape = SubResource("RectangleShape2D_8a8pi")
 
-[node name="Player" parent="." instance=ExtResource("1_syuel")]
+[node name="Player" parent="." node_paths=PackedStringArray("inventory", "inventory_ui") instance=ExtResource("1_syuel")]
 position = Vector2(29, 271)
+inventory = NodePath("InventoryComponent")
+inventory_ui = NodePath("../UI/InventoryUI")
+
+[node name="InventoryComponent" type="Node" parent="Player"]
+script = ExtResource("2_hrq6i")
+inventory = SubResource("Resource_s3n3v")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" node_paths=PackedStringArray("inventory_component") instance=ExtResource("2_8a8pi")]
+visible = false
+inventory_component = NodePath("../../Player/InventoryComponent")
