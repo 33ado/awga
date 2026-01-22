@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0fsi23ocvam3"]
+
+[ext_resource type="Script" uid="uid://bl4y5gbb68ix4" path="res://entities/player/states/inventory_state/inventory_state.gd" id="1_wyx0j"]
+
+[node name="InventoryState" type="Node"]
+script = ExtResource("1_wyx0j")
+metadata/_custom_type_script = "uid://bksg3lf2drtlw"

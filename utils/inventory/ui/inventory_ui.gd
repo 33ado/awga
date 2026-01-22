@@ -12,10 +12,9 @@ func _ready() -> void:
 	inventory_component.inventory_changed.connect(refresh)
 	_build_slots()
 	refresh()
-	print_tree_pretty()
-
+	
 func _build_slots():
-	for i in inventory_component.inventory.size:
+	for i in inventory_component.get_inventory_size():
 		var slot_ui = slot_scene.instantiate()
 		slot_ui.index = i
 		slot_ui.set_inventory(inventory_component)

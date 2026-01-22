@@ -14,6 +14,10 @@ func physics_update(delta : float) -> void:
 		transitioned.emit(self, "fall")
 	
 func on_input(event : InputEvent) -> void:
+	if Input.is_action_just_pressed("inventory"):
+		transitioned.emit(self, "inventorystate")
+		return
+	
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction != 0:
 		transitioned.emit(self, "run")

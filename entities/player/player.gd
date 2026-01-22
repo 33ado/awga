@@ -8,6 +8,7 @@ const DECELERATION : float = 1.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var inventory: InventoryComponent
+@export var inventory_ui : InventoryUI
 
 @export var test_item: ItemData
 

@@ -4,7 +4,7 @@ class_name InventorySlotUI
 @export var index : int
 var inventory : InventoryComponent
 
-@onready var icon := $Icon
+@onready var icon := $MarginContainer/CenterContainer/Icon
 @onready var amount_label := $AmountLabel
 
 func set_inventory(inv : InventoryComponent):

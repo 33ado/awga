@@ -29,6 +29,9 @@ func split_stack(from_index : int, to_index : int, amount : int):
 	
 func get_slot(index : int) -> InventorySlot:
 	return inventory.get_slot(index)
+	
+func get_inventory_size() -> int:
+	return inventory.size
 
 func give_item(item : ItemData, amount : int = -1) -> int:
 	return add_item(item, amount) == 0
