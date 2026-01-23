@@ -8,7 +8,7 @@ func _init() -> void:
 	slots.resize(size)
 	
 	for i in range(size):
-		slots[i] = InventorySlot.new()
+		slots[i] = InventorySlot.new(i)
 		
 func add_item(item : ItemData, amount : int = -1) -> int:
 	var remaining = amount
@@ -95,3 +95,10 @@ func get_slot(index : int) -> InventorySlot:
 		return null
 	
 	return slots[index]
+
+func get_first_empty_slot() -> InventorySlot:
+	for slot in slots:
+		if slot.is_empty():
+			return slot
+	
+	return null

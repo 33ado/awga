@@ -48,3 +48,5 @@ coyote_timer = NodePath("../../CoyoteTimer")
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
 script = ExtResource("7_qiwj3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
