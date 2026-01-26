@@ -47,12 +47,12 @@ func use_slot(index : int) -> void:
 	if slot.item.has_method("use"):
 		slot.item.use(get_parent())	# TODO: Add use method to possible items
 		
-	inventory.remove_item(slot.item, 1)
+	inventory.remove_item(slot.item, 1, slot)
 	inventory_changed.emit()
 	
 func drop_slot(index : int) -> void:
 	var slot = inventory.get_slot(index)
-	if not slot or slot.is_empty():
+	if slot.is_empty():
 		return
 	
 	_spawn_world_item(slot.item, slot.amount)

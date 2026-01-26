@@ -34,8 +34,12 @@ func add_item(item : ItemData, amount : int = -1) -> int:
 			
 	return remaining
 
-func remove_item(item : ItemData, amount : int = -1) -> void:
+func remove_item(item : ItemData, amount : int = -1, from_slot : InventorySlot = null) -> void:
 	var remaining = amount
+	
+	if from_slot and remaining <= from_slot.amount:
+		_remove_item_from_slot(from_slot, remaining)
+		return
 	
 	for slot in slots:
 		if remaining <= 0:
@@ -43,12 +47,15 @@ func remove_item(item : ItemData, amount : int = -1) -> void:
 			
 		# Check if item exists
 		if slot.item == item:
-			var take = min(slot.amount, remaining)
-			slot.amount -= take
-			remaining -= take
-			if slot.amount <= 0:
-				slot.clear()
-				
+			_remove_item_from_slot(slot, remaining)
+
+func _remove_item_from_slot(slot : InventorySlot, remaining : int) -> void:
+	var take = min(slot.amount, remaining)
+	slot.amount -= take
+	remaining -= take
+	if slot.amount <= 0:
+		slot.clear()
+
 func move_slot(from_index : int, to_index : int):
 	if from_index == to_index:
 		return
